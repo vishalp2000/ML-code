@@ -9,7 +9,7 @@ from torchvision import datasets
 from torchvision.transforms import ToTensor, Lambda, Compose
 import matplotlib.pyplot as plot
 
-import time
+import time #This is time
 from time import time as now
 import torch.nn.functional as F
 import torch.optim as optim
