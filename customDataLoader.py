@@ -41,31 +41,35 @@ def generate_images(directory, shape):
 
     # Put each class glob into an array for iteration
     files = [files_yellow, files_orange]
+    classes = ['yellow', 'orange']
 
     classification = 0
 
     save_dir = os.path.join(directory, 'prepped')
-    # fil = open(os.path.join(save_dir, 'labels.csv'), 'a')
+    os.chdir(save_dir)
+    fil = open(os.path.join(save_dir, 'labels.csv'), 'a')
 
     for file_list in files:
-
+        i = 0
         for file in file_list:
-            f = file.split("s")[-1]
             image = cv2.imread(file)
             image = cv2.resize(image, (shape,shape), interpolation=cv2.INTER_AREA)
-            cv2.imwrite(os.path.join(save_dir, f), image)
-            # fil.write('s'+f+','+str(classification)+',\n')
+            cv2.imwrite('s' + classes[classification] + str(i) + '.jpg', image)
+            fil.write('s'+ classes[classification],'+str(classification)+','\n')
             
-            # first_char = f[0]
-            # if(first_char =="y"):
-            #     fil.write('Yellow, '+ str(classification) +',\n') 
-            # elif (first_char=="o"):
-            #     fil.write('Orange, '+ str(classification) +',\n')
+            f = file.split("s")[-1]
+            first_char = f[1]
+            if(first_char =="y"):
+                fil.write('Yellow, '+ str(classification) +',\n') 
+            elif (first_char=="o"):
+                fil.write('Orange, '+ str(classification) +',\n')
+
+            i += 1
         
         
         classification += 1
 
-    # fil.close()
+    fil.close()
 
 
 '''
