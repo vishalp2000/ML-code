@@ -18,6 +18,8 @@ from torch.autograd import Variable
 import matplotlib
 matplotlib.use('TkAgg', force=True)
 
+import os # For use with the new directory parameter in generateImages
+
 shape = 20
 
 generate_images(shape)
