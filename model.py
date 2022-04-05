@@ -21,7 +21,7 @@ class NeuralNetwork(nn.Module):
     def __init__(self, shape, classes=2, nodes=2000):
         super(NeuralNetwork,self).__init__()
         
-        self.fc1 = nn.Linear(shape*shape*3, nodes)
+        self.fc1 = nn.Linear(shape*shape, nodes)
         self.s1  = nn.Sigmoid()
         self.fc2 = nn.Linear(nodes, nodes)
         self.s2  = nn.Sigmoid()
@@ -29,6 +29,7 @@ class NeuralNetwork(nn.Module):
 
     def forward(self, x):
         x = x.view(x.size(0), -1) 
+        print(x)
         out = self.fc1(x)
         out = self.s1(out)
         out = self.fc2(out)
@@ -40,9 +41,11 @@ def train(dataloader, model, loss_fn, optimizer, device):
     size = len(dataloader.dataset)
     for batch, (X, y) in enumerate(dataloader):
         X, y = X.to(device), y.to(device)
+        # print("X: " + str(X) + "y: " + str(y))
 
         # Compute prediction error
         pred = model(X)
+        print(f"Pred: {pred}")
         loss = loss_fn(pred, y)
 
         # Backpropagation
