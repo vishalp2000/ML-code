@@ -45,7 +45,7 @@ def generate_images(directory, shape):
     classification = 0
 
     os.chdir(directory)
-    fil = open(os.path.join(directory, 'prepped/labels.csv'), 'a')
+    # fil = open(os.path.join(directory, 'prepped/labels.csv'), 'a')
 
     for file_list in files:
 
@@ -53,20 +53,19 @@ def generate_images(directory, shape):
             f = file.split("s")[-1]
             image = cv2.imread(file)
             image = cv2.resize(image, (shape,shape), interpolation=cv2.INTER_AREA)
-            im_dir = os.path.join(directory, 'prepped')
-            cv2.imwrite(os.path.join(im_dir, '/s')+f, image)
-            fil.write('s'+f+','+str(classification)+',\n')
+            cv2.imwrite(os.path.join(directory, '/prepped/s')+f, image)
+            # fil.write('s'+f+','+str(classification)+',\n')
             
-            first_char = f[0]
-            if(first_char =="y"):
-                fil.write('Yellow, '+ str(classification) +',\n') 
-            elif (first_char=="o"):
-                fil.write('Orange, '+ str(classification) +',\n')
+            # first_char = f[0]
+            # if(first_char =="y"):
+            #     fil.write('Yellow, '+ str(classification) +',\n') 
+            # elif (first_char=="o"):
+            #     fil.write('Orange, '+ str(classification) +',\n')
         
         
         classification += 1
 
-    fil.close()
+    # fil.close()
 
 
 '''
