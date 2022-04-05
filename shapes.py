@@ -29,7 +29,7 @@ start = now()
 # Get cpu or gpu device for training.
 device = "cuda" if torch.cuda.is_available() else "cpu"
 
-data_set = graspDataSet(str(shape)+'/labels.csv', str(shape)+'/', ToTensor())
+data_set = graspDataSet(os.path.join(prep_dir, 'prepped/labels.csv'), str(shape)+'/', ToTensor())
 len_data = data_set.__len__()
 testl = len_data/2
 testt = len_data/2
