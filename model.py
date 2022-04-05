@@ -18,7 +18,7 @@ matplotlib.use('TkAgg', force=True)
 
 
 class NeuralNetwork(nn.Module):
-    def __init__(self, shape, classes=5, nodes=2000):
+    def __init__(self, shape, classes=2, nodes=2000):
         super(NeuralNetwork,self).__init__()
         
         self.fc1 = nn.Linear(shape*shape*3, nodes)
