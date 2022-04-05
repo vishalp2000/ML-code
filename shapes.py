@@ -23,13 +23,17 @@ import os # For use with the new directory parameter in generateImages
 shape = 20
 prep_dir = "C:/Python Files"
 
+print("Generating Images...")
 generate_images(prep_dir, shape)
+print("Done")
 
 start = now()
 # Get cpu or gpu device for training.
 device = "cuda" if torch.cuda.is_available() else "cpu"
 
+print("Fetching Data Set")
 data_set = graspDataSet(os.path.join(prep_dir, 'prepped/labels.csv'), str(shape)+'/', ToTensor())
+print("Done")
 len_data = data_set.__len__()
 testl = len_data/2
 testt = len_data/2
