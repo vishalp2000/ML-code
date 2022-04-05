@@ -31,18 +31,21 @@ class graspDataSet(Dataset):
 
         return (image, y_label)
 
-def generate_images(shape):
-    if os.path.exists('/prepped/labels.csv'):
+def generate_images(directory, shape):
+    if os.path.exists(os.path.join(directory, 'prepped/labels.csv')):
         return
 
-    files_yellow = glob('yellow/*.jpg')
-    files_orange = glob('orange/*.jpg')
+    # Put all the files from different classes into their own globs for iteration
+    files_yellow = glob(directory + '/yellow/*.jpg')
+    files_orange = glob(directory + '/orange/*.jpg')
 
+    # Put each class glob into an array for iteration
     files = [files_yellow, files_orange]
 
     classification = 0
 
-    fil = open('C:/Users/visha/OneDrive/Desktop/Senior design/labels.csv', 'a')
+    os.chdir(directory)
+    fil = open(os.path.join(directory, 'prepped/labels.csv'), 'a')
 
     for file_list in files:
 
@@ -50,7 +53,8 @@ def generate_images(shape):
             f = file.split("s")[-1]
             image = cv2.imread(file)
             image = cv2.resize(image, (shape,shape), interpolation=cv2.INTER_AREA)
-            cv2.imwrite('prepped/s'+f, image)
+            im_dir = os.path.join(directory, 'prepped')
+            cv2.imwrite(os.path.join(im_dir, '/s')+f, image)
             fil.write('s'+f+','+str(classification)+',\n')
             
             first_char = f[0]

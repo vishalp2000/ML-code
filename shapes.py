@@ -21,8 +21,9 @@ matplotlib.use('TkAgg', force=True)
 import os # For use with the new directory parameter in generateImages
 
 shape = 20
+prep_dir = "C:/Python Files"
 
-generate_images(shape)
+generate_images(prep_dir, shape)
 
 start = now()
 # Get cpu or gpu device for training.
