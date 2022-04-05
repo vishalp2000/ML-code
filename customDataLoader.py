@@ -44,8 +44,8 @@ def generate_images(directory, shape):
 
     classification = 0
 
-    os.chdir(directory)
-    # fil = open(os.path.join(directory, 'prepped/labels.csv'), 'a')
+    save_dir = os.path.join(directory, 'prepped')
+    # fil = open(os.path.join(save_dir, 'labels.csv'), 'a')
 
     for file_list in files:
 
@@ -53,7 +53,7 @@ def generate_images(directory, shape):
             f = file.split("s")[-1]
             image = cv2.imread(file)
             image = cv2.resize(image, (shape,shape), interpolation=cv2.INTER_AREA)
-            cv2.imwrite(os.path.join(directory, '/prepped/s')+f, image)
+            cv2.imwrite(os.path.join(save_dir, f), image)
             # fil.write('s'+f+','+str(classification)+',\n')
             
             # first_char = f[0]

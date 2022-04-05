@@ -37,7 +37,7 @@ print("Done")
 len_data = data_set.__len__()
 testl = len_data/2
 testt = len_data/2
-training_data, testing_data = torch.utils.data.random_split(data_set,[int(testl),int(testt)])
+training_data, testing_data = torch.utils.data.random_split(len_data,[int(testl),int(testt)])
 
 batch_size = int(len_data/2)-1
 
