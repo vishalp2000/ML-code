@@ -55,7 +55,7 @@ def generate_images(directory, shape):
             image = cv2.imread(file)
             image = cv2.resize(image, (shape,shape), interpolation=cv2.INTER_AREA)
             cv2.imwrite('s' + classes[classification] + str(i) + '.jpg', image)
-            fil.write('s'+ classes[classification],'+str(classification)+','\n')
+            fil.write('s' + classes[classification] + ',' + str(classification) + ',\n')
             
             f = file.split("s")[-1]
             first_char = f[1]
