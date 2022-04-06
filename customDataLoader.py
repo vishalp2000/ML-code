@@ -13,7 +13,9 @@ from glob import glob
 class graspDataSet(Dataset):
 
     def __init__(self, csv_file, root_dir, transform=None):
-        self.annotations = pandas.read_csv(csv_file)
+        self.annotations = pandas.read_csv(csv_file, header = None)
+        print(f"Data: {self.annotations}")
+        # print("Annotations: " + str(self.annotations.__len__()))
         self.root_dir = root_dir
         self.transform = transform
 
@@ -52,17 +54,12 @@ def generate_images(directory, shape):
     for file_list in files:
         i = 0
         for file in file_list:
-            image = cv2.imread(file)
-            image = cv2.resize(image, (shape,shape), interpolation=cv2.INTER_AREA)
-            cv2.imwrite('s' + classes[classification] + str(i) + '.jpg', image)
-            fil.write('s'+ classes[classification],'+str(classification)+','\n')
-            
-            f = file.split("s")[-1]
-            first_char = f[1]
-            if(first_char =="y"):
-                fil.write('Yellow, '+ str(classification) +',\n') 
-            elif (first_char=="o"):
-                fil.write('Orange, '+ str(classification) +',\n')
+            im_name = str('s' + classes[classification] + str(i) + '.jpg')
+            if not os.path.exists(os.path.join(save_dir, im_name)):
+                image = cv2.imread(file)
+                image = cv2.resize(image, (shape,shape), interpolation=cv2.INTER_AREA)
+                cv2.imwrite(im_name, image)
+            fil.write(str('s' + classes[classification] + str(i) + '.jpg ,' + str(classification) + ',\n'))
 
             i += 1
         
