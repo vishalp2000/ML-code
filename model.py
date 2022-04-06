@@ -29,7 +29,7 @@ class NeuralNetwork(nn.Module):
 
     def forward(self, x):
         x = x.view(x.size(0), -1) 
-        print(x)
+        #print(x)
         out = self.fc1(x)
         out = self.s1(out)
         out = self.fc2(out)
