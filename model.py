@@ -45,7 +45,7 @@ def train(dataloader, model, loss_fn, optimizer, device):
 
         # Compute prediction error
         pred = model(X)
-        print(f"Pred: {pred}")
+        #print(f"Pred: {pred}")
         loss = loss_fn(pred, y)
 
         # Backpropagation
@@ -69,5 +69,5 @@ def test(dataloader, model, loss_fn, device):
             correct += (pred.argmax(1) == y).type(torch.float).sum().item()
     test_loss /= num_batches
     correct /= size
-    print("Accuracy:", round(correct,3), 'Avg loss:', round(test_loss,3))
+    # print("Accuracy:", round(correct,3), 'Avg loss:', round(test_loss,3))
     return correct, test_loss
