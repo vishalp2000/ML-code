@@ -52,19 +52,20 @@ optimizer = torch.optim.SGD(model.parameters(), lr=1e-3)
 
 a = []
 l = []
-
+x = 0
 while(True):
-    print("Trying...")
+    print("Trying..."+ str(x))
     try:
         #print('epoch', t)
         train(train_dataloader, model, loss_fn, optimizer, device)
         correct, test_loss = test(test_dataloader, model, loss_fn, device)
-        print(correct)
+        #print(correct)
         a.append(correct)
         l.append(test_loss)
     except:
         print("Failed")
         break
+    x += 1
 
 plot.plot(a)
 plot.plot(l)
