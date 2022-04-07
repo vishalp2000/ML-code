@@ -14,7 +14,8 @@ class graspDataSet(Dataset):
 
     def __init__(self, csv_file, root_dir, transform=None):
         self.annotations = pandas.read_csv(csv_file, header = None)
-        print(f"Data: {self.annotations}")
+        if 2 in self.annotations.columns:
+            self.annotations.drop(columns = [2], axis=1, inplace= True)
         # print("Annotations: " + str(self.annotations.__len__()))
         self.root_dir = root_dir
         self.transform = transform
@@ -30,7 +31,6 @@ class graspDataSet(Dataset):
 
         if self.transform:
             image = self.transform(image)
-
         return (image, y_label)
 
 def generate_images(directory, shape):
