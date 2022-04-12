@@ -29,7 +29,7 @@ my_target = [[85,     115],     # Min breadth
              [85,     165],     # Min length
              [125,    205],     # Max length
              [8500,   23000],   # Min area
-             [13500,  27000]]   # Max area
+             [13500,  28000]]   # Max area
 
 wide_net = [[1,      1],   
             [500,    500],
@@ -173,11 +173,7 @@ def get_type(bounds, target, labels):
     return "None"
 
 def sort_by_distance(payloads):
-    i = 1
     payloads.sort(key = get_payload_distance)
-    for payload in payloads:
-        print(i, ": ", round(payload.distance, 2), " Type: ", payload.type)
-        i += 1
     return payloads
 
 def get_payload_distance(payload):

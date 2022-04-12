@@ -56,7 +56,7 @@ except:
 raw_capture = PiRGBArray(cam, size = (640, 480))
 sleep(0.1) # allow the camera to warm up
 
-goaltype = "a" # Replace with socket reading
+goaltype = "Yellow" # Replace with socket reading
 while not goaltype == "":
     for frame in cam.capture_continuous(raw_capture, format="bgr", use_video_port=True):
         # global conn
@@ -102,9 +102,11 @@ while not goaltype == "":
                 rot = payload.r
                 tag_set = {'right_robot_x':xMove, 'right_robot_y':yMove, 'right_robot_r':rot}
                 node = messaging.client_send('vision', tag_set, True)
-                print(node['vision_tags']['right_robot_x'])
+                print('x: ', node['vision_tags']['right_robot_x'])
+                print('y: ', node['vision_tags']['right_robot_y'])
                 # Move to and pick up this payload
+                break
 
     goaltype = "a" # Reset flag
     cam.close()
-    cv.destroyAllWindows()
+    # cv.destroyAllWindows()
