@@ -1,0 +1,14 @@
+# This CITATION.cff file was generated with cffinit.
+# Visit https://bit.ly/cffinit to generate yours today!
+
+cff-version: 1.2.0
+title: CNN Machine Learning model for Image Classification
+message: >-
+  Please cite this software using the metadata from
+  'preferred-citation'.
+type: software
+authors:
+  - given-names: Vishal Patil
+    email: vpatil@students.kennesaw.edu
+  - given-names: Daniel Anderson
+    email: bande123@students.kennesaw.edu
